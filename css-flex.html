@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS FLEX EX01</title>
+	<style>
+		label[for=containerWidth] > span,
+		label[for=containerHeight] > span {
+			display: inline-block;
+			width: 4rem;
+		}
+		.container,
+		.container .item {
+			border: 1px solid #bbb;
+		}
+		.container .item {
+			margin: 8px;
+		}
+		.flex {
+			display: flex;
+		}
+		.inline-flex {
+			display: inline-flex;
+		}
+		.flex-direction-row {
+			flex-direction: row;
+		}
+		.flex-direction-column {
+			flex-direction: column;
+		}
+		.flex-direction-row-reverse {
+			flex-direction: row-reverse;
+		}
+		.flex-direction-column-reverse {
+			flex-direction: column-reverse;
+		}
+		.flex-wrap {
+			flex-wrap: wrap;
+		}
+		.flex-wrap-nowrap {
+			flex-wrap: nowrap;
+		}
+		.flex-wrap-reverse {
+			flex-wrap: wrap-reverse;
+		}
+		.flex-justify-content-start {
+			justify-content: flex-start;
+		}
+		.flex-justify-content-end {
+			justify-content: flex-end;
+		}
+		.flex-justify-content-center {
+			justify-content: center;
+		}
+		.flex-justify-content-space-between {
+			justify-content: space-between;
+		}
+		.flex-justify-content-space-around {
+			justify-content: space-around;
+		}
+		.flex-justify-content-space-evenly {
+			justify-content: space-evenly;
+		}
+		.flex-align-items-stretch {
+			align-items: stretch;
+		}
+		.flex-align-items-start {
+			align-items: flex-start;
+		}
+		.flex-align-items-end {
+			align-items: flex-end;
+		}
+		.flex-align-items-center {
+			align-items: center;
+		}
+		.flex-align-items-baseline {
+			align-items: baseline;
+		}
+		.flex-align-content-stretch {
+			align-content: stretch;
+		}
+		.flex-align-content-start {
+			align-content: flex-start;
+		}
+		.flex-align-content-end {
+			align-content: flex-end;
+		}
+		.flex-align-content-center {
+			align-content: center;
+		}
+		.flex-align-space-between {
+			align-content: space-between;
+		}
+		.flex-align-content-space-around {
+			align-content: space-around;
+		}
+		.flex-align-content-space-evenly {
+			align-content: space-evenly;
+		}
+	</style>
+	<script>
+		window.onload = () => {
+			document.querySelector(".flex-list").addEventListener("click", (e) => {
+				let target = e.target;
+				let { tagName } = target;
+
+				var names = Array.from(document.querySelectorAll(".flex-list dd input")).map(item => item.name);
+				names = names.filter((item, index) => names.indexOf(item) === index);
+
+				var classNames = "";
+				names.map((item, index) => {
+					var value = document.querySelector("[name=" + item + "]:checked").value;
+					return classNames += !index ? value : " " + value;
+				});
+
+				console.log(classNames);
+
+				if (tagName === "LABEL" || tagName === "INPUT") {
+					if (tagName === "LABEL") target = target.firstElementChild;
+					document.querySelector(".container").classList = "container " + classNames
+				}
+			});
+
+			document.querySelector("#containerWidth").addEventListener("input", (e) => {
+				document.querySelector(".container").style.width = e.target.value + "px"
+			});
+
+			document.querySelector("#containerHeight").addEventListener("input", (e) => {
+				document.querySelector(".container").style.height = e.target.value + "px"
+			});
+
+			document.querySelector("#item1Width").addEventListener("input", (e) => {
+				document.querySelector(".container > #item1").style.width = e.target.value + "px"
+			});
+
+			document.querySelector("#item1Height").addEventListener("input", (e) => {
+				document.querySelector(".container > #item1").style.height = e.target.value + "px"
+			});
+
+			document.querySelector("#item2Width").addEventListener("input", (e) => {
+				document.querySelector(".container > #item2").style.width = e.target.value + "px"
+			});
+
+			document.querySelector("#item2Height").addEventListener("input", (e) => {
+				document.querySelector(".container > #item2").style.height = e.target.value + "px"
+			});
+
+			document.querySelector("#item3Width").addEventListener("input", (e) => {
+				document.querySelector(".container > #item3").style.width = e.target.value + "px"
+			});
+
+			document.querySelector("#item3Height").addEventListener("input", (e) => {
+				document.querySelector(".container > #item3").style.height = e.target.value + "px"
+			});
+		}
+	</script>
+</head>
+<body>
+	<div class="container flex flex-direction-row flex-wrap-nowrap flex-justify-content-start flex-align-items-stretch" style="width: 540px; height: 480px;">
+		<div class="item" id="item1" style="height: 120px;">item1</div>
+		<div class="item" id="item2" style="height: 240px;">item2</div>
+		<div class="item" id="item3" style="height: 360px;">item3</div>
+	</div>
+	<dl>
+		<dt>container size(px)</dt>
+		<dd>
+			<ul>
+				<li><label for="containerWidth"><span>width:</span> <input type="text" id="containerWidth" value="540" /></label></li>
+				<li><label for="containerHeight"><span>height:</span> <input type="text" id="containerHeight" value="480" /></label></li>
+			</ul>
+		</dd>
+	</dl>
+	<dl>
+		<dt>item1 size(px)</dt>
+		<dd>
+			<ul>
+				<li><label for="item1Width"><span>width:</span> <input type="text" id="item1Width" value="60" /></label></li>
+				<li><label for="item1Height"><span>height:</span> <input type="text" id="item1Height" value="120" /></label></li>
+			</ul>
+		</dd>
+	</dl>
+	<dl>
+		<dt>item2 size(px)</dt>
+		<dd>
+			<ul>
+				<li><label for="item2Width"><span>width:</span> <input type="text" id="item2Width" value="60" /></label></li>
+				<li><label for="item2Height"><span>height:</span> <input type="text" id="item2Height" value="240" /></label></li>
+			</ul>
+		</dd>
+	</dl>
+	<dl>
+		<dt>item3 size(px)</dt>
+		<dd>
+			<ul>
+				<li><label for="item3Width"><span>width:</span> <input type="text" id="item3Width" value="60" /></label></li>
+				<li><label for="item3Height"><span>height:</span> <input type="text" id="item3Height" value="360" /></label></li>
+			</ul>
+		</dd>
+	</dl>
+	<dl class="flex-list">
+		<dt>flex</dt>
+		<dd>
+			<ul>
+				<li><label for="flex">flex<input type="radio" name="display" id="flex" value="flex" checked /></label></li>
+				<li><label for="inlineFlex">inline-flex<input type="radio" name="display" id="inlineFlex" value="inline-flex" /></label></li>
+			</ul>
+		</dd>
+		<dt>flex-direction</dt>
+		<dd>
+			<ul>
+				<li><label for="flexDirectionRow">row<input type="radio" name="flex-direction" id="flexDirectionRow" value="flex-direction-row" checked /></label></li>
+				<li><label for="flexDirectionRowReverse">row-reverse<input type="radio" name="flex-direction" id="flexDirectionRowReverse" value="flex-direction-row-reverse" /></label></li>
+				<li><label for="flexDirectionColumn">column<input type="radio" name="flex-direction" id="flexDirectionColumn" value="flex-direction-column" /></label></li>
+				<li><label for="flexDirectionColumnReverse">column-reverse<input type="radio" name="flex-direction" id="flexDirectionColumnReverse" value="flex-direction-column-reverse" /></label></li>
+			</ul>
+		</dd>
+		<dt>flex-wrap</dt>
+		<dd>
+			<ul>
+				<li><label for="flexWrapNowrap">nowrap<input type="radio" name="flex-wrap" id="flexWrapNowrap" value="flex-wrap-nowrap" checked /></label></li>
+				<li><label for="flexWarp">wrap<input type="radio" name="flex-wrap" id="flexWarp" value="flex-wrap" /></label></li>
+				<li><label for="flexWrapReverse">wrapReverse<input type="radio" name="flex-wrap" id="flexWrapReverse" value="flex-wrap-reverse" /></label></li>
+			</ul>
+		</dd>
+		<dt>justify-content</dt>
+		<dd>
+			<ul>
+				<li><label for="flexJustifyContentStart">flex-start<input type="radio" name="justify-content" id="flexJustifyContentStart" value="flex-justify-content-start" checked /></label></li>
+				<li><label for="flexJustifyContentEnd">flex-end<input type="radio" name="justify-content" id="flexJustifyContentEnd" value="flex-justify-content-end" /></label></li>
+				<li><label for="flexJustifyContentCenter">center<input type="radio" name="justify-content" id="flexJustifyContentCenter" value="flex-justify-content-center" /></label></li>
+				<li><label for="flexJustifyContentSpaceBetween">space-between<input type="radio" name="justify-content" id="flexJustifyContentSpaceBetween" value="flex-justify-content-space-between" /></label></li>
+				<li><label for="flexJustifyContentSpaceAround">space-around<input type="radio" name="justify-content" id="flexJustifyContentSpaceAround" value="flex-justify-content-space-around" /></label></li>
+				<li><label for="flexJustifyContentSpaceEvenly">space-evenly<input type="radio" name="justify-content" id="flexJustifyContentSpaceEvenly" value="flex-justify-content-space-evenly" /></label></li>
+			</ul>
+		</dd>
+		<dt>align-items</dt>
+		<dd>
+			<ul>
+				<li><label for="flexAlignItemsStretch">stretch<input type="radio" name="align-items" id="flexAlignItemsStretch" value="flex-align-items-stretch" checked /></label></li>
+				<li><label for="flexAlignItemsStart">flex-start<input type="radio" name="align-items" id="flexAlignItemsStart" value="flex-align-items-start" /></label></li>
+				<li><label for="flexAlignItemsEnd">flex-end<input type="radio" name="align-items" id="flexAlignItemsEnd" value="flex-align-items-end" /></label></li>
+				<li><label for="flexAlignItemsCenter">center<input type="radio" name="align-items" id="flexAlignItemsCenter" value="flex-align-items-center" /></label></li>
+				<li><label for="flexAlignItemsBaseline">baseline<input type="radio" name="align-items" id="flexAlignItemsBaseline" value="flex-align-items-baseline" /></label></li>
+			</ul>
+		</dd>
+		<dt>align-content</dt>
+		<dd>
+			<ul>
+				<li><label for="flexAlignContentStretch">stretch<input type="radio" name="align-content" id="flexAlignContentStretch" value="flex-align-content-stretch" checked /></label></li>
+				<li><label for="flexAlignContentStart">flex-start<input type="radio" name="align-content" id="flexAlignContentStart" value="flex-align-content-start" /></label></li>
+				<li><label for="flexAlignContentEnd">flex-end<input type="radio" name="align-content" id="flexAlignContentEnd" value="flex-align-content-end" /></label></li>
+				<li><label for="flexAlignContentCenter">center<input type="radio" name="align-content" id="flexAlignContentCenter" value="flex-align-content-center" /></label></li>
+				<li><label for="flexAlignContentSpaceBetween">space-between<input type="radio" name="align-content" id="flexAlignContentSpaceBetween" value="flex-align-space-between" /></label></li>
+				<li><label for="flexAlignContentSpaceAround">space-around<input type="radio" name="align-content" id="flexAlignContentSpaceAround" value="flex-align-content-space-around" /></label></li>
+				<li><label for="flexAlignContentSpaceEvenly">space-evenly<input type="radio" name="align-content" id="flexAlignContentSpaceEvenly" value="flex-align-content-space-evenly" /></label></li>
+			</ul>
+		</dd>
+	</dl>
+</body>
+</html>
